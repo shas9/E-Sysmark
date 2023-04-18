@@ -1,0 +1,23 @@
+{
+  "name": "esysmark",
+  "version": "1.0.0",
+  "description": "Refactor E-Sysmark",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shas9/E-Sysmark.git"
+  },
+  "author": "Sysmark",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shas9/E-Sysmark/issues"
+  },
+  "homepage": "https://github.com/shas9/E-Sysmark#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2"
+  }
+}
