@@ -3,18 +3,19 @@ import apiClient from "../services/api-client";
 import { CanceledError } from "axios";
 
 
-interface Product {
+export interface Product {
     id: number;
     name: string;
-  }
+    background_image: string;
+}
   
-  interface FetchProductResponse {
+interface FetchProductResponse {
     count: number;
     results: Product[];
-  }
+}
   
 const useProducts = () => {
-    const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const [error, setError] = useState("");
 
   useEffect(() => {
