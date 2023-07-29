@@ -1,6 +1,7 @@
 import { Grid, GridItem, Show } from "@chakra-ui/react";
 import NavBar from "./component/NavBar";
 import ProductGrid from "./component/ProductGrid";
+import CategoryList from "./component/CategoryList";
 
 const App = () => {
   return (
@@ -14,7 +15,9 @@ const App = () => {
         <NavBar></NavBar>
       </GridItem>
       <Show above="lg">
-        <GridItem area="aside">Aside</GridItem>
+        <GridItem area="aside">
+          <CategoryList />
+        </GridItem>
       </Show>
       <GridItem area="main">
         <ProductGrid />
