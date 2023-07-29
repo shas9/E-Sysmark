@@ -1,6 +1,7 @@
 import React from "react";
 import { Product } from "../hooks/useProducts";
 import { Card, CardBody, Heading, Image } from "@chakra-ui/react";
+import { getCroppedImageUrl } from "../services/image-url";
 
 interface Props {
   id: number;
@@ -10,7 +11,7 @@ interface Props {
 const ProductCard = ({ product }: Props) => {
   return (
     <Card borderRadius={10} overflow="hidden">
-      <Image src={product.background_image}></Image>
+      <Image src={getCroppedImageUrl(product.background_image)}></Image>
       <CardBody>
         <Heading fontSize="2xl">{product.name}</Heading>
       </CardBody>
