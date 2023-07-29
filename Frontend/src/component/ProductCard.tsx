@@ -10,7 +10,7 @@ interface Props {
 
 const ProductCard = ({ product }: Props) => {
   return (
-    <Card borderRadius={10} overflow="hidden">
+    <Card width="200px" borderRadius={10} overflow="hidden">
       <Image src={getCroppedImageUrl(product.background_image)}></Image>
       <CardBody>
         <Heading fontSize="2xl">{product.name}</Heading>

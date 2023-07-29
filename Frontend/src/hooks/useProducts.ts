@@ -17,22 +17,29 @@ interface FetchProductResponse {
 const useProducts = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [error, setError] = useState("");
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     const controller = new AbortController();
+
+    setLoading(true);
     
     apiClient
       .get<FetchProductResponse>("/games", {signal: controller.signal})
-      .then((res) => setProducts(res.data.results))
+      .then((res) => {
+        setProducts(res.data.results)
+        setLoading(false)
+      })
       .catch((err) => {
         if(err instanceof CanceledError) return;
         setError(err.message)
+        setLoading(false)
       });
 
       return () => controller.abort();
   }, []);
 
-  return { products, error }
+  return { products, error, isLoading }
 }
 
 export default useProducts;
