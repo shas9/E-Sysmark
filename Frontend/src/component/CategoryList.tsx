@@ -1,8 +1,19 @@
-import { HStack, Image, List, ListItem, Spinner, Text } from "@chakra-ui/react";
-import useCategories from "../hooks/useCategories";
+import {
+  Button,
+  HStack,
+  Image,
+  List,
+  ListItem,
+  Spinner,
+} from "@chakra-ui/react";
+import useCategories, { Category } from "../hooks/useCategories";
 import { getCroppedImageUrl } from "../services/image-url";
 
-const CategoryList = () => {
+interface Props {
+  onSelectCategory: (category: Category) => void;
+}
+
+const CategoryList = ({ onSelectCategory }: Props) => {
   const { data, isLoading, error } = useCategories();
 
   if (error) return null;
@@ -17,7 +28,13 @@ const CategoryList = () => {
               borderRadius={8}
               src={getCroppedImageUrl(category.image_background)}
             ></Image>
-            <Text fontSize="lg">{category.name}</Text>
+            <Button
+              onClick={() => onSelectCategory(category)}
+              fontSize="lg"
+              variant="link"
+            >
+              {category.name}
+            </Button>
           </HStack>
         </ListItem>
       ))}

@@ -1,10 +1,8 @@
-import React from "react";
 import { Product } from "../hooks/useProducts";
 import { Card, CardBody, Heading, Image } from "@chakra-ui/react";
 import { getCroppedImageUrl } from "../services/image-url";
 
 interface Props {
-  id: number;
   product: Product;
 }
 

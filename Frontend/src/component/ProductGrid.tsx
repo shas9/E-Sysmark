@@ -3,9 +3,14 @@ import useProducts from "../hooks/useProducts";
 import ProductCard from "./ProductCard";
 import ProductCardSkeleton from "./ProductCardSkeleton";
 import ProductCardContainer from "./ProductCardContainer";
+import { Category } from "../hooks/useCategories";
 
-const ProductGrid = () => {
-  const { data, error, isLoading } = useProducts();
+interface Props {
+  selectedCategory: Category | null;
+}
+
+const ProductGrid = ({ selectedCategory }: Props) => {
+  const { data, error, isLoading } = useProducts(selectedCategory);
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8];
   return (
     <>
@@ -17,13 +22,13 @@ const ProductGrid = () => {
       >
         {isLoading &&
           skeletons.map((skeleton) => (
-            <ProductCardContainer>
-              <ProductCardSkeleton key={skeleton} />
+            <ProductCardContainer key={skeleton}>
+              <ProductCardSkeleton />
             </ProductCardContainer>
           ))}
         {data.map((product) => (
-          <ProductCardContainer>
-            <ProductCard id={product.id} product={product} />
+          <ProductCardContainer key={product.id}>
+            <ProductCard product={product} />
           </ProductCardContainer>
         ))}
       </SimpleGrid>
