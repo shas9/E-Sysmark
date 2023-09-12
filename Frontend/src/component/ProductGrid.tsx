@@ -1,35 +1,37 @@
-import React, { useEffect, useState } from "react";
-import apiClient from "../services/api-client";
-import { Text } from "@chakra-ui/react";
+import { SimpleGrid, Text } from "@chakra-ui/react";
+import useProducts from "../hooks/useProducts";
+import ProductCard from "./ProductCard";
+import ProductCardSkeleton from "./ProductCardSkeleton";
+import ProductCardContainer from "./ProductCardContainer";
+import { Category } from "../hooks/useCategories";
 
-interface Product {
-  id: number;
-  name: string;
+interface Props {
+  selectedCategory: Category | null;
 }
 
-interface FetchProductResponse {
-  count: number;
-  results: Product[];
-}
-
-const ProductGrid = () => {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    apiClient
-      .get<FetchProductResponse>("/games")
-      .then((res) => setProducts(res.data.results))
-      .catch((err) => setError(err.message));
-  });
+const ProductGrid = ({ selectedCategory }: Props) => {
+  const { data, error, isLoading } = useProducts(selectedCategory);
+  const skeletons = [1, 2, 3, 4, 5, 6, 7, 8];
   return (
     <>
       {error && <Text>{error}</Text>}
-      <ul>
-        {products.map((product) => (
-          <li key={product.id}>{product.name}</li>
+      <SimpleGrid
+        columns={{ sm: 1, md: 3, lg: 3, xl: 5 }}
+        padding="10px"
+        spacing={3}
+      >
+        {isLoading &&
+          skeletons.map((skeleton) => (
+            <ProductCardContainer key={skeleton}>
+              <ProductCardSkeleton />
+            </ProductCardContainer>
+          ))}
+        {data.map((product) => (
+          <ProductCardContainer key={product.id}>
+            <ProductCard product={product} />
+          </ProductCardContainer>
         ))}
-      </ul>
+      </SimpleGrid>
     </>
   );
 };
