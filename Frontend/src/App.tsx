@@ -1,4 +1,4 @@
-import { Grid, GridItem, Show } from "@chakra-ui/react";
+import { Grid, GridItem, Show, useColorModeValue } from "@chakra-ui/react";
 import NavBar from "./component/NavBar";
 import ProductGrid from "./component/ProductGrid";
 import CategoryList from "./component/CategoryList";
@@ -10,6 +10,9 @@ const App = () => {
     null
   );
 
+  // Determine the background color based on the color mode (light/dark)
+  const bgColor = useColorModeValue("gray.100", "gray.800");
+
   return (
     <Grid
       templateAreas={{
@@ -20,6 +23,8 @@ const App = () => {
         base: "1fr",
         lg: "300px 1fr",
       }}
+      bg={bgColor} // Set the background color
+      minH="100vh" // Ensure the grid takes up the full viewport height
     >
       <GridItem area="nav">
         <NavBar></NavBar>
