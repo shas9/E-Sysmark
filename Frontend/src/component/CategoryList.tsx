@@ -1,10 +1,12 @@
 import {
+  Box,
   Button,
   HStack,
   Image,
   List,
   ListItem,
   Spinner,
+  useColorMode,
 } from "@chakra-ui/react";
 import useCategories, { Category } from "../hooks/useCategories";
 import { getCroppedImageUrl } from "../services/image-url";
@@ -16,26 +18,44 @@ interface Props {
 
 const CategoryList = ({ selectedCategory, onSelectCategory }: Props) => {
   const { data, isLoading, error } = useCategories();
+  const { colorMode } = useColorMode();
 
   if (error) return null;
   if (isLoading) return <Spinner />;
   return (
-    <List>
+    <List spacing={2}>
       {data.map((category) => (
-        <ListItem key={category.id} paddingY="5px">
-          <HStack>
+        <ListItem
+          key={category.id}
+          paddingY="5px"
+          _hover={{
+            "& .category-text": {
+              color: colorMode === "light" ? "blue.600" : "blue.300",
+            },
+          }}
+        >
+          <HStack alignItems="center">
             <Image
               boxSize="32px"
-              borderRadius={8}
+              borderRadius="full"
               src={getCroppedImageUrl(category.image_background)}
-            ></Image>
+              alt={category.name}
+            />
             <Button
               fontWeight={
                 category.id === selectedCategory?.id ? "bold" : "normal"
               }
               onClick={() => onSelectCategory(category)}
               fontSize="lg"
-              variant="link"
+              variant="ghost"
+              colorScheme={
+                category.id === selectedCategory?.id ? "blue" : "gray"
+              }
+              justifyContent="start"
+              w="100%"
+              textTransform="capitalize"
+              _focus={{ boxShadow: "none" }}
+              className="category-text" // Added class name for text
             >
               {category.name}
             </Button>
