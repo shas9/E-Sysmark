@@ -30,7 +30,8 @@ const CategoryList = ({ selectedCategory, onSelectCategory }: Props) => {
           paddingY="5px"
           _hover={{
             "& .category-text": {
-              color: colorMode === "light" ? "blue.600" : "blue.300",
+              color: colorMode === "light" ? "gray.600" : "blue.300",
+              background: colorMode === "light" ? "gray.300" : "blue.800", // Highlight background color
             },
           }}
         >
