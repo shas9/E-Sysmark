@@ -1,12 +1,10 @@
-import { Box, useColorMode, useColorModeValue } from "@chakra-ui/react";
+import { Box, useColorModeValue } from "@chakra-ui/react";
 import { ReactNode } from "react";
 
 interface Props {
   children: ReactNode;
 }
 const ProductCardContainer = ({ children }: Props) => {
-  const { colorMode } = useColorMode();
-
   // Define colors and styles for both light and dark modes
   const bgColor = useColorModeValue("white", "gray.700");
   const borderColor = useColorModeValue("gray.200", "gray.600");
