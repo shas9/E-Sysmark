@@ -30,14 +30,14 @@ const App = () => {
         <NavBar></NavBar>
       </GridItem>
       <Show above="lg">
-        <GridItem area="aside" paddingX={5}>
+        <GridItem area="aside" paddingX={5} paddingY={5}>
           <CategoryList
             selectedCategory={selectedCategory}
             onSelectCategory={(category) => setSelectedCategory(category)}
           />
         </GridItem>
       </Show>
-      <GridItem area="main">
+      <GridItem area="main" paddingY={5}>
         <ProductGrid selectedCategory={selectedCategory} />
       </GridItem>
     </Grid>
