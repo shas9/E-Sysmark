@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -10,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import useCategories, { Category } from "../hooks/useCategories";
 import { getCroppedImageUrl } from "../services/image-url";
+import { FaChevronRight, FaChevronDown } from "react-icons/fa"; // Import arrow icons
 
 interface Props {
   onSelectCategory: (category: Category) => void;
@@ -19,6 +21,19 @@ interface Props {
 const CategoryList = ({ selectedCategory, onSelectCategory }: Props) => {
   const { data, isLoading, error } = useCategories();
   const { colorMode } = useColorMode();
+
+  // State to track the currently expanded category
+  const [expandedCategory, setExpandedCategory] = useState<number | null>(null);
+
+  const toggleCategory = (categoryId: number) => {
+    if (expandedCategory === categoryId) {
+      // If the clicked category is already expanded, collapse it
+      setExpandedCategory(null);
+    } else {
+      // If a different category is clicked, expand it and collapse the previous one
+      setExpandedCategory(categoryId);
+    }
+  };
 
   if (error) return null;
   if (isLoading) return <Spinner />;
@@ -31,7 +46,7 @@ const CategoryList = ({ selectedCategory, onSelectCategory }: Props) => {
           _hover={{
             "& .category-text": {
               color: colorMode === "light" ? "gray.600" : "blue.300",
-              background: colorMode === "light" ? "gray.300" : "blue.800", // Highlight background color
+              background: colorMode === "light" ? "gray.300" : "blue.800",
             },
           }}
         >
@@ -46,7 +61,10 @@ const CategoryList = ({ selectedCategory, onSelectCategory }: Props) => {
               fontWeight={
                 category.id === selectedCategory?.id ? "bold" : "normal"
               }
-              onClick={() => onSelectCategory(category)}
+              onClick={() => {
+                toggleCategory(category.id);
+                onSelectCategory(category);
+              }}
               fontSize="lg"
               variant="ghost"
               colorScheme={
@@ -56,11 +74,30 @@ const CategoryList = ({ selectedCategory, onSelectCategory }: Props) => {
               w="100%"
               textTransform="capitalize"
               _focus={{ boxShadow: "none" }}
-              className="category-text" // Added class name for text
+              className="category-text"
             >
               {category.name}
             </Button>
+            <Box
+              ml="auto"
+              fontSize="lg"
+              cursor="pointer"
+              onClick={() => toggleCategory(category.id)}
+            >
+              {expandedCategory === category.id ? (
+                <FaChevronDown />
+              ) : (
+                <FaChevronRight />
+              )}
+            </Box>
           </HStack>
+          {/* Render additional content when the category is expanded */}
+          {expandedCategory === category.id && (
+            <Box>
+              {/* Add your expandable content here */}
+              <p>This is additional content for {category.name}</p>
+            </Box>
+          )}
         </ListItem>
       ))}
     </List>
