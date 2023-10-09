@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import {
   Box,
   Button,
+  Collapse,
   HStack,
+  Icon,
   Image,
   List,
   ListItem,
@@ -11,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import useCategories, { Category } from "../hooks/useCategories";
 import { getCroppedImageUrl } from "../services/image-url";
-import { FaChevronRight, FaChevronDown } from "react-icons/fa"; // Import arrow icons
+import { MdExpandMore, MdExpandLess } from "react-icons/md"; // Material UI icons
 
 interface Props {
   onSelectCategory: (category: Category) => void;
@@ -84,20 +86,20 @@ const CategoryList = ({ selectedCategory, onSelectCategory }: Props) => {
                 onClick={() => toggleCategory(category.id)}
               >
                 {expandedCategory === category.id ? (
-                  <FaChevronDown />
+                  <Icon as={MdExpandLess} />
                 ) : (
-                  <FaChevronRight />
+                  <Icon as={MdExpandMore} />
                 )}
               </Box>
             </Button>
           </HStack>
           {/* Render additional content when the category is expanded */}
-          {expandedCategory === category.id && (
-            <Box>
+          <Collapse in={expandedCategory === category.id}>
+            <Box mt={2} p={2} borderWidth="1px" borderRadius="md">
               {/* Add your expandable content here */}
               <p>This is additional content for {category.name}</p>
             </Box>
-          )}
+          </Collapse>
         </ListItem>
       ))}
     </List>
