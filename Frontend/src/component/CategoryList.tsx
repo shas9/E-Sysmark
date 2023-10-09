@@ -77,19 +77,19 @@ const CategoryList = ({ selectedCategory, onSelectCategory }: Props) => {
               className="category-text"
             >
               {category.name}
+              <Box
+                ml="auto"
+                fontSize="lg"
+                cursor="pointer"
+                onClick={() => toggleCategory(category.id)}
+              >
+                {expandedCategory === category.id ? (
+                  <FaChevronDown />
+                ) : (
+                  <FaChevronRight />
+                )}
+              </Box>
             </Button>
-            <Box
-              ml="auto"
-              fontSize="lg"
-              cursor="pointer"
-              onClick={() => toggleCategory(category.id)}
-            >
-              {expandedCategory === category.id ? (
-                <FaChevronDown />
-              ) : (
-                <FaChevronRight />
-              )}
-            </Box>
           </HStack>
           {/* Render additional content when the category is expanded */}
           {expandedCategory === category.id && (
