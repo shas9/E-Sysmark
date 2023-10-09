@@ -3,6 +3,7 @@ import {
   Box,
   Button,
   Collapse,
+  Flex,
   HStack,
   Icon,
   Image,
@@ -38,7 +39,13 @@ const CategoryList = ({ selectedCategory, onSelectCategory }: Props) => {
   };
 
   if (error) return null;
-  if (isLoading) return <Spinner />;
+  if (isLoading)
+    return (
+      <Flex justify="center" align="center" minHeight="100px">
+        <Spinner size="lg" color="blue.300" />
+      </Flex>
+    );
+
   return (
     <List spacing={2}>
       {data.map((category) => (
