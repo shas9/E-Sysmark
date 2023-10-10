@@ -1,7 +1,8 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { List, Spinner, Flex } from "@chakra-ui/react";
 import useCategories, { Category } from "../hooks/useCategories";
-import CategoryItem from "./CategoryItem"; // Import the CategoryItem component
+import CategoryItem from "./CategoryItem";
+import CategoryItemSkeleton from "./CategoryItemSkeleton"; // Import the CategoryItemSkeleton component
 
 interface Props {
   onSelectCategory: (category: Category) => void;
@@ -25,25 +26,25 @@ const CategoryList = ({ selectedCategory, onSelectCategory }: Props) => {
   };
 
   if (error) return null;
-  if (isLoading)
-    return (
-      <Flex justify="center" align="center" minHeight="100px">
-        <Spinner size="lg" color="blue.300" />
-      </Flex>
-    );
 
   return (
     <List spacing={2}>
-      {data.map((category) => (
-        <CategoryItem
-          key={category.id}
-          category={category}
-          selected={category.id === selectedCategory?.id}
-          onSelectCategory={onSelectCategory}
-          isExpanded={expandedCategory === category.id}
-          toggleCategory={() => toggleCategory(category.id)}
-        />
-      ))}
+      {isLoading
+        ? // Render the skeleton component when loading
+          Array.from({ length: 15 }).map((_, index) => (
+            <CategoryItemSkeleton key={index} />
+          ))
+        : // Render the actual category items when data is available
+          data.map((category) => (
+            <CategoryItem
+              key={category.id}
+              category={category}
+              selected={category.id === selectedCategory?.id}
+              onSelectCategory={onSelectCategory}
+              isExpanded={expandedCategory === category.id}
+              toggleCategory={() => toggleCategory(category.id)}
+            />
+          ))}
     </List>
   );
 };
