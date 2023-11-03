@@ -1,30 +1,53 @@
 import {
-  HStack,
+  Box,
+  Flex,
   Image,
-  Text,
+  Spacer,
   useColorMode,
+  HStack,
+  Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import logo from "../assets/Sysmark-logo.png";
 import ColorModeSwitch from "./ColorModeSwitch";
+import logo from "../assets/Sysmark-logo.png";
 
 const NavBar = () => {
-  const { colorMode } = useColorMode();
+  const { colorMode, toggleColorMode } = useColorMode();
 
-  // Define colors and styles for both light and dark modes
-  const bgColor = useColorModeValue("gray.200", "gray.900"); // Background color
-  const boxShadow = useColorModeValue("md", "none"); // Box shadow
+  const bgColor = {
+    light: "gray.200",
+    dark: "gray.900",
+  }[colorMode];
+
+  const boxShadow = {
+    light: "md",
+    dark: "none",
+  }[colorMode];
 
   return (
-    <HStack
-      justifyContent="space-between"
-      padding="10px" // Add padding here (adjust as needed)
+    <Box
+      as="nav"
+      p={2}
       bg={bgColor}
       boxShadow={boxShadow}
+      borderBottom="1px"
+      borderColor={useColorModeValue("gray.300", "gray.700")}
     >
-      <Image src={logo} boxSize="60px" m={2} />
-      <ColorModeSwitch />
-    </HStack>
+      <Flex justify="space-between" align="center">
+        <HStack spacing={2} align="center">
+          <Image src={logo} boxSize="60px" alt="Sysmark Logo" />
+          <Text fontSize="lg" fontWeight="bold">
+            Sysmark
+          </Text>
+        </HStack>
+
+        <Spacer />
+
+        <HStack spacing={4}>
+          <ColorModeSwitch />
+        </HStack>
+      </Flex>
+    </Box>
   );
 };
 
