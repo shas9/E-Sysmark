@@ -7,6 +7,7 @@ import {
   Icon,
   Image,
   ListItem,
+  useColorMode,
 } from "@chakra-ui/react";
 import { MdExpandMore, MdExpandLess } from "react-icons/md";
 import { getCroppedImageUrl } from "../services/image-url";
@@ -27,14 +28,30 @@ const CategoryItem: React.FC<CategoryItemProps> = ({
   isExpanded,
   toggleCategory,
 }) => {
+  const { colorMode } = useColorMode();
+
+  // Define hover styles based on color mode
+  const hoverStyles = {
+    light: {
+      color: selected ? "gray.700" : "gray.600",
+      background: selected ? "gray.400" : "gray.300",
+    },
+    dark: {
+      color: selected ? "blue.400" : "blue.300",
+      background: selected ? "blue.900" : "blue.800",
+    },
+  };
+
+  const hoverStyle = hoverStyles[colorMode];
+
   return (
     <ListItem
       key={category.id}
       paddingY="5px"
       _hover={{
         "& .category-text": {
-          color: selected ? "blue.300" : "gray.600",
-          background: selected ? "blue.800" : "gray.300",
+          color: hoverStyle.color,
+          background: hoverStyle.background,
         },
       }}
     >
