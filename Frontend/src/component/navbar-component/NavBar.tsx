@@ -1,16 +1,12 @@
 import {
   Box,
   Flex,
-  Text,
   IconButton,
   Image,
-  Button,
   Stack,
   Collapse,
   useColorModeValue,
-  useBreakpointValue,
   useDisclosure,
-  useColorMode,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import logo from "../../assets/Sysmark-logo.png";
@@ -18,20 +14,26 @@ import ColorModeSwitch from "../ColorModeSwitch";
 import MobileNav from "./MobileNav";
 import DesktopNav from "./DesktopNav";
 
-export default function WithNavigation() {
+export default function NavBar() {
   const { isOpen, onToggle } = useDisclosure();
 
+  const bgColor = useColorModeValue("gray.200", "gray.900");
+  const borderColor = useColorModeValue("gray.300", "gray.700");
+  const boxShadowColor = useColorModeValue(
+    "rgba(0, 0, 0, 0.1)",
+    "rgba(255, 255, 255, 0.1)"
+  );
+
   return (
-    <Box>
+    <Box bg={bgColor} boxShadow={boxShadowColor}>
       <Flex
-        bg={useColorModeValue("white", "gray.800")}
         color={useColorModeValue("gray.600", "white")}
-        minH="60px"
+        minH="80px"
         py={{ base: 2 }}
         px={{ base: 4 }}
         borderBottom={1}
         borderStyle="solid"
-        borderColor={useColorModeValue("gray.200", "gray.900")}
+        borderColor={borderColor}
         align="center"
       >
         <Flex

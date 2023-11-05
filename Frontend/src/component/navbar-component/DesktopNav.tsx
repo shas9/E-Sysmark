@@ -6,7 +6,20 @@ const DesktopNav = () => {
   const isLightMode = colorMode === "light";
   const linkColor = isLightMode ? "gray.600" : "gray.200";
   const linkHoverColor = isLightMode ? "gray.800" : "white";
-  const bgColor = isLightMode ? "white" : "gray.800";
+
+  // Define hover styles based on color mode
+  const hoverStyles = {
+    light: {
+      color: "gray.900",
+      transform: "scale(1.05)", // Increase size on hover
+    },
+    dark: {
+      color: "blue.300",
+      transform: "scale(1.05)", // Increase size on hover
+    },
+  };
+
+  const hoverStyle = hoverStyles[colorMode];
 
   return (
     <Stack direction="row" spacing={4}>
@@ -16,18 +29,12 @@ const DesktopNav = () => {
           as="a"
           p={2}
           href={navItem.itemLink ?? "#"}
-          fontSize="sm"
+          fontSize="md"
           fontWeight={500}
           color={linkColor}
-          backgroundColor={bgColor}
-          borderRadius="md" // Add corner radius to the box
-          _hover={{
-            textDecoration: "none",
-            color: linkHoverColor,
-            backgroundColor: isLightMode ? "teal.50" : "teal.500", // Change box background color on hover
-            transition:
-              "background-color 0.3s ease-in-out, color 0.3s ease-in-out", // Add smooth transition effects
-          }}
+          borderRadius="md"
+          transition="transform 0.2s, background 0.2s, color 0.2s" // Added transitions for a smoother hover effect
+          _hover={hoverStyle}
         >
           {navItem.label}
         </Box>
