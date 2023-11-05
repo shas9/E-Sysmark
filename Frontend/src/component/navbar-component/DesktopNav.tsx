@@ -5,7 +5,6 @@ const DesktopNav = () => {
   const { colorMode } = useColorMode();
   const isLightMode = colorMode === "light";
   const linkColor = isLightMode ? "gray.600" : "gray.200";
-  const linkHoverColor = isLightMode ? "gray.800" : "white";
 
   // Define hover styles based on color mode
   const hoverStyles = {

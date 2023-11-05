@@ -14,8 +14,7 @@ const MobileNav = () => {
 const MobileNavItem = ({ label, itemLink }: NavItem) => {
   const hoverStyles = {
     textDecoration: "none",
-    backgroundColor: useColorModeValue("teal.50", "teal.500"),
-    color: useColorModeValue("teal.500", "teal.50"),
+    backgroundColor: useColorModeValue("gray.300", "blue.800"),
     transition: "background-color 0.3s ease-in-out, color 0.3s ease-in-out",
   };
 

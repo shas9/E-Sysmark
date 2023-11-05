@@ -8,13 +8,15 @@ export interface NavItem {
 export const NAV_ITEMS = [
   {
     label: "Home",
+    itemLink: "home",
   },
   {
     label: "Product",
+    itemLink: "products",
   },
   {
     label: "About Us",
-    itemLink: "#",
+    itemLink: "https://www.sysmarkbd.com/",
   },
 ];
 
