@@ -1,5 +1,5 @@
 import { Grid, GridItem, Show, useColorModeValue } from "@chakra-ui/react";
-import NavBar from "./component/NavBar";
+import NavBar from "./component/navbar-component/NavBar";
 import ProductGrid from "./component/ProductGrid";
 import CategoryList from "./component/CategoryList";
 import { useState } from "react";
