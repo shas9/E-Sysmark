@@ -14,12 +14,12 @@ const MobileNav = () => {
 const MobileNavItem = ({ label, itemLink }: NavItem) => {
   const hoverStyles = {
     textDecoration: "none",
-    backgroundColor: useColorModeValue("gray.300", "blue.800"),
+    backgroundColor: useColorModeValue("gray.300", "blue.700"),
     transition: "background-color 0.3s ease-in-out, color 0.3s ease-in-out",
   };
 
   return (
-    <a href={itemLink ?? "#"} style={{ textDecoration: "none" }}>
+    <Box as="a" href={itemLink ?? "#"}>
       <Box
         py={2}
         px={3}
@@ -35,7 +35,7 @@ const MobileNavItem = ({ label, itemLink }: NavItem) => {
           {label}
         </Text>
       </Box>
-    </a>
+    </Box>
   );
 };
 

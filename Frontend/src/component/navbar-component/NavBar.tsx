@@ -17,17 +17,12 @@ import DesktopNav from "./DesktopNav";
 export default function NavBar() {
   const { isOpen, onToggle } = useDisclosure();
 
-  const bgColor = useColorModeValue("gray.200", "gray.900");
-  const borderColor = useColorModeValue("gray.300", "gray.700");
-  const boxShadowColor = useColorModeValue(
-    "rgba(0, 0, 0, 0.1)",
-    "rgba(255, 255, 255, 0.1)"
-  );
+  const bgColor = useColorModeValue("gray.200", "gray.700");
+  const borderColor = useColorModeValue("gray.300", "gray.600");
 
   return (
-    <Box bg={bgColor} boxShadow={boxShadowColor}>
+    <Box bg={bgColor}>
       <Flex
-        color={useColorModeValue("gray.600", "white")}
         minH="80px"
         py={{ base: 2 }}
         px={{ base: 4 }}
