@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Box,
   Button,
@@ -10,8 +10,8 @@ import {
   useColorMode,
 } from "@chakra-ui/react";
 import { MdExpandMore, MdExpandLess } from "react-icons/md";
-import { getCroppedImageUrl } from "../services/image-url";
-import { Category } from "../hooks/useCategories";
+import { getCroppedImageUrl } from "../../services/image-url";
+import { Category } from "../../hooks/useCategories";
 
 interface CategoryItemProps {
   category: Category;

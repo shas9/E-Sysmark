@@ -7,11 +7,11 @@ import {
   Flex,
   Spacer,
 } from "@chakra-ui/react";
-import useProducts from "../hooks/useProducts";
+import useProducts from "../../hooks/useProducts";
 import ProductCard from "./ProductCard";
 import ProductCardSkeleton from "./ProductCardSkeleton";
 import ProductCardContainer from "./ProductCardContainer";
-import { Category } from "../hooks/useCategories";
+import { Category } from "../../hooks/useCategories";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons"; // Import pagination icons
 
 interface Props {
