@@ -1,4 +1,4 @@
-import { Product } from "../hooks/useProducts";
+import { Product } from "../../hooks/useProducts";
 import {
   Box,
   Image,
@@ -6,7 +6,7 @@ import {
   useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { getCroppedImageUrl } from "../services/image-url";
+import { getCroppedImageUrl } from "../../services/image-url";
 
 interface Props {
   product: Product;

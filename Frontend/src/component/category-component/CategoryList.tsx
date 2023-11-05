@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { List, Spinner, Flex } from "@chakra-ui/react";
-import useCategories, { Category } from "../hooks/useCategories";
+import useCategories, { Category } from "../../hooks/useCategories";
 import CategoryItem from "./CategoryItem";
 import CategoryItemSkeleton from "./CategoryItemSkeleton"; // Import the CategoryItemSkeleton component
 
