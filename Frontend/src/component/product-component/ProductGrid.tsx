@@ -1,7 +1,6 @@
 import {
   SimpleGrid,
   Text,
-  Box,
   useColorModeValue,
   Button,
   Flex,
@@ -13,6 +12,7 @@ import ProductCardSkeleton from "./ProductCardSkeleton";
 import ProductCardContainer from "./ProductCardContainer";
 import { Category } from "../../hooks/useCategories";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons"; // Import pagination icons
+import ContentContainer from "../ContentContainer";
 
 interface Props {
   selectedCategory: Category | null;
@@ -22,21 +22,11 @@ const ProductGrid = ({ selectedCategory }: Props) => {
   const { data, error, isLoading } = useProducts(selectedCategory);
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8];
 
-  // Determine the shadow color based on the color mode (light/dark)
-  const shadowColor = useColorModeValue(
-    "rgba(0, 0, 0, 0.1)",
-    "rgba(255, 255, 255, 0.1)"
-  );
-
   // Define pagination button colors for light and dark modes
   const paginationButtonColor = useColorModeValue("teal", "gray");
 
   return (
-    <Box
-      boxShadow={`0px 0px 6px 2px ${shadowColor}`} // Add shadow to all sides
-      borderRadius="md"
-      p={4}
-    >
+    <ContentContainer>
       {error && (
         <Text color="red.500" fontSize="xl" textAlign="center" my={4}>
           {error}
@@ -82,7 +72,7 @@ const ProductGrid = ({ selectedCategory }: Props) => {
           </Flex>
         </>
       )}
-    </Box>
+    </ContentContainer>
   );
 };
 
