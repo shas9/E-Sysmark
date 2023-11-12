@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
-import App from "./App";
+import Home from "./Home";
 import Products from "./Products";
 import theme from "./theme";
 import "./index.css";
@@ -13,11 +13,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <App />,
+        element: <Home />,
       },
       {
         path: "home",
-        element: <App />,
+        element: <Home />,
       },
       {
         path: "products",

@@ -4,8 +4,9 @@ import ProductGrid from "./component/product-component/ProductGrid";
 import CategoryList from "./component/category-component/CategoryList";
 import { useState } from "react";
 import { Category } from "./hooks/useCategories";
+import HomeContent from "./component/home-component/HomeContent";
 
-const App = () => {
+const Home = () => {
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(
     null
   );
@@ -17,11 +18,9 @@ const App = () => {
     <Grid
       templateAreas={{
         base: `"nav" "main"`,
-        lg: `"nav nav" "aside main"`, //1024
       }}
       templateColumns={{
         base: "1fr",
-        lg: "300px 1fr",
       }}
       bg={bgColor} // Set the background color
       minH="100vh" // Ensure the grid takes up the full viewport height
@@ -29,11 +28,11 @@ const App = () => {
       <GridItem area="nav">
         <NavBar></NavBar>
       </GridItem>
-      <GridItem area="main" paddingY={5}>
-        <ProductGrid selectedCategory={selectedCategory} />
+      <GridItem area="main" padding={5}>
+        <HomeContent />
       </GridItem>
     </Grid>
   );
 };
 
-export default App;
+export default Home;
