@@ -5,7 +5,7 @@ import CategoryList from "./component/category-component/CategoryList";
 import { useState } from "react";
 import { Category } from "./hooks/useCategories";
 
-const App = () => {
+const Products = () => {
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(
     null
   );
@@ -29,6 +29,14 @@ const App = () => {
       <GridItem area="nav">
         <NavBar></NavBar>
       </GridItem>
+      <Show above="lg">
+        <GridItem area="aside" paddingX={5} paddingY={5}>
+          <CategoryList
+            selectedCategory={selectedCategory}
+            onSelectCategory={(category) => setSelectedCategory(category)}
+          />
+        </GridItem>
+      </Show>
       <GridItem area="main" paddingY={5}>
         <ProductGrid selectedCategory={selectedCategory} />
       </GridItem>
@@ -36,4 +44,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Products;

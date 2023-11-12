@@ -3,6 +3,7 @@
 export interface NavItem {
     label: string;
     itemLink?: string;
+    target?: string;
 }
 
 export const NAV_ITEMS = [
@@ -17,6 +18,7 @@ export const NAV_ITEMS = [
   {
     label: "About Us",
     itemLink: "https://www.sysmarkbd.com/",
+    target: "_blank",
   },
 ];
 

@@ -11,7 +11,7 @@ const MobileNav = () => {
   );
 };
 
-const MobileNavItem = ({ label, itemLink }: NavItem) => {
+const MobileNavItem = ({ label, itemLink, target }: NavItem) => {
   const hoverStyles = {
     textDecoration: "none",
     backgroundColor: useColorModeValue("gray.300", "blue.700"),
@@ -19,7 +19,7 @@ const MobileNavItem = ({ label, itemLink }: NavItem) => {
   };
 
   return (
-    <Box as="a" href={itemLink ?? "#"}>
+    <Box as="a" href={itemLink ?? "#"} target={target ?? ""}>
       <Box
         py={2}
         px={3}
