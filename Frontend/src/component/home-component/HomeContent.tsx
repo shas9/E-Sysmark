@@ -5,9 +5,6 @@ const HomeContent = () => {
   return (
     <ContentContainer>
       <TopCarousel />
-      <TopCarousel />
-      <TopCarousel />
-      <TopCarousel />
     </ContentContainer>
   );
 };
